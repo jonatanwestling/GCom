@@ -1,0 +1,30 @@
+.graph {
+    -fx-background-color: transparent;
+}
+
+.vertex {
+    -fx-fill: #8e44ad;
+    -fx-stroke: white;
+    -fx-stroke-width: 2;
+}
+
+.vertex:hover {
+    -fx-stroke: #f2c94c;
+    -fx-stroke-width: 3;
+}
+
+.edge {
+    -fx-stroke: #d6d8de;
+    -fx-stroke-width: 2;
+}
+
+.arrow {
+    -fx-stroke: #d6d8de;
+    -fx-stroke-width: 2;
+}
+
+.edge:hover,
+.arrow:hover {
+    -fx-stroke: #f2c94c;
+    -fx-stroke-width: 3;
+}

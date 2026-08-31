@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+option java_package = "se.gcom.middleware.communicationModule";
+option java_multiple_files = true;
+
+service CommunicationService{
+  rpc SendMessage(Message) returns (Ack);
+}
+
+message Message {
+  oneof content {
+    ChatMessage chatMessage = 1;
+    GroupMembership groupMembership = 2;
+    DataAck datAck = 3;
+  }
+}
+
+message ChatMessage {
+  string messageId = 1;
+  string senderId = 2;
+  string groupId= 3;
+  string payload = 4;
+  map<string, int32> vectorClock = 5;
+  repeated string path = 6;
+}
+
+message GroupMembership{
+  string messageId = 1;
+  string senderId = 2;
+  string groupId = 3;
+  bool joining = 4;
+}
+
+message Ack {
+  bool success = 1;
+  string errorMessage = 2;
+  int32 dataMessages = 5;
+  int32 ackMessages = 6;
+  oneof details {
+    DataAck data = 3;
+    MembershipAck membership = 4;
+  }
+}
+
+message MembershipAck {
+  int32 viewId = 1;
+  repeated string members = 2;
+  map<string, int32> vectorClock = 3;
+  bool isCausal = 4;
+  bool isReliable = 5;
+  bool isStatic = 6;
+  repeated string staticMembers = 7;
+  bool canJoinStaticGroup = 8;
+}
+
+message DataAck {
+  string messageId = 1;
+  repeated string path = 2;
+}

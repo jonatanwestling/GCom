@@ -1,0 +1,15 @@
+package se.gcom.app.debug;
+
+public enum DebugEventType {
+    PROCESS_STARTED,
+    MESSAGE_CREATED,
+    MESSAGE_DELIVERED,
+    OPERATION_PERFORMANCE,
+
+    VECTOR_CLOCK_UPDATED,
+
+    NETWORK_SEND,
+    NETWORK_RECEIVE,
+    NETWORK_ACK,
+    NETWORK_FAILURE
+}

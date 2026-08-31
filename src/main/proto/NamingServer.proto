@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option java_package = "se.NameServer.grpc";
+option java_multiple_files = true;
+
+service NamingService {
+  rpc GetAddresses (GroupRequest) returns (AddressList);
+  rpc AddNewGroup (AddGroupRequest) returns (Empty);
+  rpc AddToGroup (AddToGroupRequest) returns (Empty);
+  rpc RemoveFromGroup (AddToGroupRequest) returns (Empty);
+  rpc GetGroups (AddressRequest) returns (GroupList);
+  rpc IsUp (Empty) returns (Empty);
+}
+
+message GroupRequest {
+  string groupName = 1;
+}
+
+message AddressRequest {
+  string addressName = 1;
+}
+
+message AddGroupRequest {
+  string groupName = 1;
+  repeated string addresses = 2;
+}
+
+message AddToGroupRequest {
+  string groupName = 1;
+  string address = 2;
+}
+
+message AddressList {
+  repeated string addresses = 1;
+}
+message GroupList {
+  repeated string groups = 1;
+}
+
+message Empty {}
